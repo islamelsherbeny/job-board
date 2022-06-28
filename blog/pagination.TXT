@@ -1,0 +1,3 @@
+in views 
+first why pagination ???
+	to have a suitable content in your page and make your website faster

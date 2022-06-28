@@ -7,14 +7,15 @@ from django.contrib.auth.decorators import login_required
 from  .filters import JobFilter
 
 
-#this is 
 def job_list(request):
     job_list = Job.objects.all()   #google for django query set documentation 
     
     #filters
     myfilter = JobFilter(request.GET, queryset=job_list)
-    
     job_list = myfilter.qs
+    # this is my vaariable i will pass it in the context to use it as a variaBLE IN HTML
+    count = str(job_list.count())
+    
     
     #this is from django paginator documentation
     paginator = Paginator(job_list, 5)
@@ -22,12 +23,13 @@ def job_list(request):
     page_obj = paginator.get_page(page_number)
     
     #don't forget to return the page object in the context 
-    context = {'jobs':page_obj, 'myfilter':myfilter}    #key is the name you will use in template -- value is your name here
-    return render(request,'job/job_list.html', context) #you will need 3 arguments in the return
+    #key is the name you will use in template -- value is your name here
+    context = {'jobs':page_obj, 'myfilter':myfilter,'count':count}    
+    return render(request,'job/job_list.html', context) 
 
 
 def job_detail(request, slug):
-    job_detail = Job.objects.get(slug=slug)
+    # job_detail = Job.objects.get(slug=slug)
     
     if request.method=='post':
         form = ApplyForm(request.POST, request.FILES)

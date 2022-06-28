@@ -46,7 +46,10 @@ INSTALLED_APPS = [
     'django_filters',
     'contact',
     'rest_framework',
-
+    'blog.apps.BlogConfig',
+    'crispy_forms',     #this is a third party app i installed with pip
+    # 'blog',
+    # 'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +156,9 @@ EMAIL_HOST_USER = 'islamsherbeny94@gmail.com'
 EMAIL_HOST_PASSWORD = 'embxfhjgsfyprpnx'
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587'
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'   #this is my setting because by default is ues bootstrap version 2
+LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_URL = 'login'
